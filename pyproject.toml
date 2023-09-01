@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "fastapiproject"
+version = "0.1.0"
+description = ""
+authors = ["alexjacobs <alex.jacobs08@gmail.com"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+passlib = "^1.7.4"
+pyjwt = "^2.8.0"
+bcrypt = "^4.0.1"
+httpx = "^0.24.1"
+fastapi = "^0.101.1"
+boto3 = "^1.28.36"
+uvicorn = "^0.23.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.0"
+moto = "^4.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
