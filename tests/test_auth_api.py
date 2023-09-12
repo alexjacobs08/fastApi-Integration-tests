@@ -1,5 +1,3 @@
-import pytest
-
 from app.auth import get_auth
 from app.models import TokenData
 from app.main import app
@@ -9,6 +7,12 @@ def test_login(client):
     response = client.post("/login", json={"username": "alexjacobs", "password": "secret"})
     assert response.status_code == 200
     assert "jwt" in response.json()
+
+
+def test_login_fail(client):
+    response = client.post("/login", json={"username": "alexjacobs", "password": "not_the_right_password"})
+    assert response.status_code == 401
+    assert response.json() == {'detail': 'Incorrect username or password'}
 
 
 def test_get_me_patched_auth(client):

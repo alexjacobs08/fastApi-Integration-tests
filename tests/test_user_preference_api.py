@@ -1,7 +1,7 @@
 import base64
 
 from app.main import app
-from app.fake_db import get_mongodb
+from app.db import get_mongodb
 
 
 def test_get_user_preferences_404(client, mock_mongodb):
@@ -27,13 +27,13 @@ def test_post_user_preferences(client, mock_mongodb):
     assert response.json() == {"detail": "success"}
 
 
-def test_get_user_profile_pic_404(client, mock_s3_bucket):
+def test_get_user_profile_pic_404(client):
     response = client.get("/users/me/profile_pic")
     assert response.status_code == 404
     assert response.json() == {'detail': 'No profile pic found'}
 
 
-def test_set_user_profile_pic(client, mock_s3_bucket):
+def test_set_user_profile_pic(client):
     with open('tests/assets/duck.png', 'rb') as f:
         response = client.post("/users/me/profile_pic", files={"picture": ("duck.png", f, "image/png")})
 
@@ -41,7 +41,7 @@ def test_set_user_profile_pic(client, mock_s3_bucket):
     assert response.json() == {'detail': 'success'}
 
 
-def test_get_user_profile_pic(client, mock_s3_bucket):
+def test_get_user_profile_pic(client):
     response = client.get("/users/me/profile_pic")
     assert response.status_code == 200
     with open('tests/assets/duck.png', 'rb') as f:

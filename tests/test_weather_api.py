@@ -50,3 +50,8 @@ def test_get_weather_parameterized(client, mock_fetch_weather_parametrized):
     assert response.json() == {'city': 'atlanta', 'weather': 'cloudy'}
 
 
+@pytest.mark.parametrize('mock_fetch_weather_parametrized', ['tornados'], indirect=True)
+def test_get_weather_parameterized(client, mock_fetch_weather_parametrized):
+    response = client.get("/weather/atlanta")
+    assert response.status_code == 200
+    assert response.json() == {'city': 'atlanta', 'weather': 'tornados'}
