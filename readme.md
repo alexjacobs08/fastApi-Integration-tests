@@ -1,5 +1,7 @@
 This repo serves as an example for doing integration tests with fastAPI and pytest.
 
+Checkout the accompanying post https://alex-jacobs.com/posts/fastapitests/
+
 Contained is a toy fastAPI app with simple JWT auth and some endpoints to serve as good examples for making integration / API tests.
  
 In `tests` thee are a number of examples using different patterns for integration testing fastAPI applications.
